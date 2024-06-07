@@ -1,56 +1,84 @@
 var empDetails = [
     {
-        empId : 1,
-        empName : "Pooja",
-        attendance : ""
+        empId: 1,
+        empName: "Pooja",
+        attendance: "",
+        empRecords : []
     },
     {
-        empId : 2,
-        empName : "Bhuvan",
-        attendance : ""
+        empId: 2,
+        empName: "Bhuvan",
+        attendance: "",
+        empRecords : []
     },
     {
-        empId : 3,
-        empName : "Preethi",
-        attendance : ""
+        empId: 3,
+        empName: "Preethi",
+        attendance: "",
+        empRecords : []
     },
     {
-        empId : 4,
-        empName : "Bhavin",
-        attendance : ""
+        empId: 4,
+        empName: "Bhavin",
+        attendance: "",
+        empRecords : []
     },
     {
-        empId : 5,
-        empName : "Dheeraj",
-        attendance : ""
+        empId: 5,
+        empName: "Dheeraj",
+        attendance: "",
+        empRecords : []
     },
-    
+
 ]
 
-function generateRandomNumber(){
-    return Math.floor(Math.random()*2)
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 2)
 }
 
 let attendance;
 empDetails.map((employee) => {
     let dailyWage = 0
+    let wagePerHour = 20
+    let fullDayHour = 8
     let partTimeWage = 0
-    let partTimeWork = generateRandomNumber()
-    attendance = generateRandomNumber()
-    if(attendance === 0){
-       employee.attendance = "Absent"
+    let halfDayHour = 4
+    let totalWage = 0
+    let count = 0
+    let monthyWage = 0
+
+    for (let i = 0; i <= 20; i++) {
+        let partTimeWork = generateRandomNumber()
+        attendance = generateRandomNumber()
+
+        if (attendance === 0) {
+            employee.attendance = "Absent"
+            dailyWage = 0
+        }
+        else {
+            count++
+            employee.attendance = "Present"
+        if (partTimeWork === 1) {
+            partTimeWage = wagePerHour * fullDayHour
+        }
+        else {
+            partTimeWage = wagePerHour * halfDayHour
+        }
+        dailyWage = wagePerHour * fullDayHour
+        totalWage = dailyWage + partTimeWage
+        // console.log(`Daily Wages of ${employee.empName}: ${dailyWage}`)
+        employee.empRecords[employee.empRecords.length] = {
+            "dailyWage" : dailyWage ,
+            "partTimewage" : partTimeWage,
+            "totalWage" : totalWage
+        }
     }
-    else {
-        employee.attendance = "Present"
-        dailyWage = 20 * 8
-    }
-    if(partTimeWork === 1){
-        partTimeWage = 20 * 8
-    }
-    else{
-        partTimeWage = 0
-    }
-    console.log(`Daily Wages of ${employee.empName}: ${dailyWage}`)
-    
+}
+employee.empRecords.map((details) => {
+    monthyWage  += details.totalWage
 })
-console.log(empDetails);
+    employee.monthyWage = monthyWage
+    // monthyWage = 0
+    console.log(employee)
+    console.log(`Employee ${employee.empName} worked for ${count} days`)
+})
