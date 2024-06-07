@@ -34,16 +34,23 @@ function generateRandomNumber(){
 let attendance;
 empDetails.map((employee) => {
     let dailyWage = 0
-    let wagePerHour = 20
-    let  fullDayHour = 8
+    let partTimeWage = 0
+    let partTimeWork = generateRandomNumber()
     attendance = generateRandomNumber()
     if(attendance === 0){
        employee.attendance = "Absent"
     }
     else {
         employee.attendance = "Present"
-        dailyWage = wagePerHour * fullDayHour
+        dailyWage = 20 * 8
+    }
+    if(partTimeWork === 1){
+        partTimeWage = 20 * 8
+    }
+    else{
+        partTimeWage = 0
     }
     console.log(`Daily Wages of ${employee.empName}: ${dailyWage}`)
+    
 })
 console.log(empDetails);
