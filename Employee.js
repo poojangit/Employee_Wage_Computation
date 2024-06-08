@@ -47,7 +47,7 @@ empDetails.map((employee) => {
     let count = 0
     let monthyWage = 0
 
-    for (let i = 0; i <= 20; i++) {
+    while(count != 20 ) {
         let partTimeWork = generateRandomNumber()
         attendance = generateRandomNumber()
 
@@ -78,7 +78,7 @@ employee.empRecords.map((details) => {
     monthyWage  += details.totalWage
 })
     employee.monthyWage = monthyWage
-    // monthyWage = 0
+    monthyWage = 0
     console.log(employee)
     console.log(`Employee ${employee.empName} worked for ${count} days`)
 })
